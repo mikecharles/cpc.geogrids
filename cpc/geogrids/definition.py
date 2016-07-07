@@ -81,18 +81,11 @@ class GeoGrid:
     Attributes
     ----------
 
-    - name (String)
-        - Name of the grid
-    - ll_corner (tuple of floats)
-        - Lower-left corner of the grid, formatted as (lat, lon)
-    - ur_corner (tuple of floats)
-        - Upper-right corner of the grid, formatted as (lat, lon)
-    - res (float)
-        - Resolution of the grid (in km if `type="even"`, in degrees if `type="latlon"`)
-    - type (str)
-        - Grid type. Possible values are:
-            - latlon (Latlon grid)
-            - equal (Equally-spaced square grid)
+    - name - *str* - name of the grid
+    - ll_corner - *tuple of floats* - lower-left corner of the grid, formatted as (lat, lon)
+    - ur_corner - *tuple of floats* - upper-right corner of the grid, formatted as (lat, lon)
+    - res = *float* - resolution of the grid (in km if `type="even"`, in degrees if `type="latlon"`)
+    - type - *str* - grid type. Possible values are 'latlon' (Latlon grid), 'equal' (Equally-spaced square grid)
     """
 
     def __init__(self, name=None, ll_corner=None, ur_corner=None, res=None, type='latlon'):
@@ -155,22 +148,22 @@ class GeoGrid:
 
     def data_fits(self, data):
         """
-        Determines if the given data fits this GeoGrid
+        Determines if the specified data fits this GeoGrid
 
         Parameters
         ----------
 
-        - data - array_like - data to verify
+        - data - *array_like* - data to verify
 
         Returns
         -------
 
-        - boolean - whether the data fits this GeoGrid
+        - *boolean* - whether the data fits this GeoGrid
 
         Exceptions
         ----------
 
-        - GeoGridError - raised if data is not a valid NumPy array
+        - *GeoGridError* - raised if data is not a valid NumPy array
         """
         # Make sure there are num_y x num_x points
         try:
@@ -181,11 +174,36 @@ class GeoGrid:
         except AttributeError:
             raise GeoGridError('Data not a valid NumPy array')
 
+    def latlon_to_gridpoint(self, latlons):
+        """
+        Returns the index of the 1-dimensional array corresponding to this GeoGrid, given the lat and lon values. The
+        lat/lon value pair must match the location of a gridpoint in this GeoGrid, otherwise None will be returned.
+
+        Parameters
+        ----------
+
+        - latlons - *tuple of floats* or *list of tuples of floats* - lat/lon of grid point(s)
+
+        Returns
+        -------
+
+        - *int* or *None* - array index containing the given gridpoint(s) index(es), or -1 if no gridpoint matches the
+        given lat/lon value
+        """
+        if type(latlons) is not list:
+            latlons = [latlons]
+        matches = []
+        for latlon in latlons:
+            lat, lon = latlon
+            lon = 360 + lon if lon < 0 else lon
+            lats, lons = np.meshgrid(self.lats, self.lons)
+            lats = lats.reshape((self.num_y * self.num_x))
+            lons = lons.reshape((self.num_y * self.num_x))
+            try:
+                matches.append(np.argwhere((lats == lat) & (lons == lon))[0][0])
+            except IndexError:
+                matches.append(-1)
+        return matches
+
+# Support applications referring to the legacy name for GeoGrids (Grids)
 Grid = GeoGrid
-
-if __name__ == '__main__':
-    from cpc.geogrids.definition import GeoGrid
-
-    grid = GeoGrid(ll_corner=(20, 30), ur_corner=(60, 90), res=2)
-
-    print(grid)
