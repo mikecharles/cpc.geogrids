@@ -153,6 +153,34 @@ class GeoGrid:
             details += eval(r.repr('- {}: {}\n'.format(key, val)))
         return 'GeoGrid:\n{}'.format(details)
 
+    def data_fits(self, data):
+        """
+        Determines if the given data fits this GeoGrid
+
+        Parameters
+        ----------
+
+        - data - array_like - data to verify
+
+        Returns
+        -------
+
+        - boolean - whether the data fits this GeoGrid
+
+        Exceptions
+        ----------
+
+        - GeoGridError - raised if data is not a valid NumPy array
+        """
+        # Make sure there are num_y x num_x points
+        try:
+            if self.num_y * self.num_x != data.size:
+                return False
+            else:
+                return True
+        except AttributeError:
+            raise GeoGridError('Data not a valid NumPy array')
+
 Grid = GeoGrid
 
 if __name__ == '__main__':
