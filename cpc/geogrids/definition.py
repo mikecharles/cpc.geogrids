@@ -207,3 +207,4 @@ class GeoGrid:
 
 # Support applications referring to the legacy name for GeoGrids (Grids)
 Grid = GeoGrid
+GridError = GeoGridError
