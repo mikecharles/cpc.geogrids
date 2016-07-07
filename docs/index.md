@@ -1,8 +1,6 @@
 Geospatial Grids (GeoGrids)
 ===========================
 
-[![Build Status](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids.svg?branch=master)](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids)
-
 What is a GeoGrid?
 ------------------
 
