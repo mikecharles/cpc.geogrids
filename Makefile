@@ -42,6 +42,7 @@ clean-pyc:
 clean-test:
 	rm -f .coverage
 	rm -fr htmlcov/
+	rm -rf cov-report/
 
 lint:
 	flake8 cpc.geogrids tests
