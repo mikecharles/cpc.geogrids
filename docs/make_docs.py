@@ -76,11 +76,16 @@ def write_module_api(module_name, parent_dir='.', out_file=None, remove_top_leve
         f.write(output)
 
 # Get command-line args
-if len(sys.argv) != 2:
+if len(sys.argv) < 2:
     print('Usage: {} [PACKAGE-NAME]'.format(os.path.basename(__file__)))
     sys.exit(1)
 else:
     main_package_name = sys.argv[1]
+
+try:
+    parent_dir = sys.argv[2]
+except IndexError:
+    parent_dir = 'docs/api'
 
 # Try importing the package to find submodules in
 try:
@@ -94,4 +99,4 @@ all_submodules = []
 list_submodules(all_submodules, package)
 
 for submodule_name in all_submodules:
-    write_module_api(submodule_name, parent_dir='api', customize_formatting=True)
+    write_module_api(submodule_name, parent_dir=parent_dir, customize_formatting=True)
