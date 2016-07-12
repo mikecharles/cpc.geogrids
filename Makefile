@@ -20,6 +20,7 @@ help:
 	@echo "test - run tests quickly with the default Python"
 	@echo "coverage - check code coverage quickly with the default Python"
 	@echo "docs - generate local API HTML documentation using MkDocs"
+	@echo "github-docs - generate API HTML documentation on GitHub.io using MkDocs"
 	@echo "release - package and upload a release"
 	@echo "dist - package"
 	@echo "install - install the package to the active Python's site-packages"
@@ -60,6 +61,9 @@ coverage:
 docs:
 	rm -rf docs/api
 	docs/make_docs.py cpc.geogrids
+
+github-docs:
+	mkdocs gh-deploy --clean
 
 release: clean
 	python setup.py sdist upload
