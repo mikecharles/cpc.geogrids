@@ -21,9 +21,9 @@ def interpolate(orig_data, orig_grid, new_grid):
     Parameters
     ----------
 
-    - orig_data - *array_like8 - array of original data
+    - orig_data - *array_like* - array of original data
     - orig_grid - *GeoGrid* - original GeoGrid
-    - new_grid - *GeoGrid - new GeoGrid
+    - new_grid - *GeoGrid* - new GeoGrid
 
     Returns
     -------
