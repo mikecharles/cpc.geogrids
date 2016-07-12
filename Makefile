@@ -19,7 +19,7 @@ help:
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
 	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "docs - generate API HTML documentation using pdoc"
+	@echo "docs - generate local API HTML documentation using MkDocs"
 	@echo "release - package and upload a release"
 	@echo "dist - package"
 	@echo "install - install the package to the active Python's site-packages"
@@ -30,6 +30,7 @@ clean-build:
 	rm -fr build/
 	rm -fr dist/
 	rm -fr .eggs/
+	rm -rf docs/api
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
@@ -57,10 +58,8 @@ coverage:
 	$(BROWSER) htmlcov/index.html
 
 docs:
-	export PYTHONPATH='.'
-	pdoc --html --html-dir docs/api --overwrite --only-pypath --external-links cpc.geogrids
-	mv -f docs/api/cpc.geogrids/* docs/api
-	rm -rf docs/api/cpc.geogrids
+	rm -rf docs/api
+	docs/make_docs.py cpc.geogrids
 
 release: clean
 	python setup.py sdist upload
