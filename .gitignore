@@ -64,3 +64,4 @@ target/
 
 # MkDocs
 /site
+/docs/api

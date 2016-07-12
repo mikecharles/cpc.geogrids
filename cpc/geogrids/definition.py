@@ -78,8 +78,7 @@ class GeoGrid:
     A GeoGrid object can either be created by providing the name of the grid, or by providing the
     other attributes listed below
 
-    Attributes
-    ----------
+    #### Attributes
 
     - name - *str* - name of the grid
     - ll_corner - *tuple of floats* - lower-left corner of the grid, formatted as (lat, lon)
@@ -150,18 +149,15 @@ class GeoGrid:
         """
         Determines if the specified data fits this GeoGrid
 
-        Parameters
-        ----------
+        #### Parameters
 
         - data - *array_like* - data to verify
 
-        Returns
-        -------
+        #### Returns
 
         - *boolean* - whether the data fits this GeoGrid
 
-        Exceptions
-        ----------
+        #### Exceptions
 
         - *GeoGridError* - raised if data is not a valid NumPy array
         """
@@ -179,13 +175,11 @@ class GeoGrid:
         Returns the index of the 1-dimensional array corresponding to this GeoGrid, given the lat and lon values. The
         lat/lon value pair must match the location of a gridpoint in this GeoGrid, otherwise None will be returned.
 
-        Parameters
-        ----------
+        #### Parameters
 
         - latlons - *tuple of floats* or *list of tuples of floats* - lat/lon of grid point(s)
 
-        Returns
-        -------
+        #### Returns
 
         - *int* or *None* - array index containing the given gridpoint(s) index(es), or -1 if no gridpoint matches the
         given lat/lon value

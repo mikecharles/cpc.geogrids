@@ -1,0 +1,25 @@
+h1 {
+    font-size: 2em;
+}
+h1, h2 {
+    border-bottom: thin solid #DDD;
+}
+pre, code {
+    font-size: 1em;
+}
+span.function {
+    color: black;
+    font-family: monospace;
+    font-size: 1.1em;
+    border: none;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+blockquote {
+    border-left: 2px solid #DDD;
+    padding-left: 10px;
+}

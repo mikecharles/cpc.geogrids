@@ -54,3 +54,53 @@ For example:
 from cpc.geogrids.definition import GeoGrid
 grid = GeoGrid(ll_corner=(20, 30), ur_corner=(60, 90), res=2)
 ```
+
+How do I manipulate data on GeoGrids?
+-------------------------------------
+
+The `cpc.geogrids` packages comes with several functions to manipulate data residing on GeoGrids, such as interpolating between GeoGrids, smoothing GeoGrids, and filling in data points near the border of a mask (eg. coastal values). These functions are documented below.
+
+### Interpolating data
+
+The `interpolate()` function can interpolate an array of data from one GeoGrid to another.
+
+    interpolate(orig_data, orig_grid, new_grid)
+
+    Interpolates data from one GeoGrid to another.
+
+    Parameters
+    ----------
+
+    - orig_data - *array_like* - array of original data
+    - orig_grid - *GeoGrid* - original GeoGrid
+    - new_grid - *GeoGrid* - new GeoGrid
+
+    Returns
+    -------
+
+    - new_data - *array_like* - a data array on the desired GeoGrid.
+
+    Examples
+    --------
+
+    Interpolate gridded temperature obs from 2 degrees (CONUS) to 1 degree global
+
+```python
+#!/usr/bin/env python
+>>> # Import packages
+>>> import numpy as np
+>>> from cpc.geogrids.definition import GeoGrid
+>>> from cpc.geogrids.manipulation import interpolate
+>>> # Create original and new GeoGrids
+>>> orig_grid = GeoGrid('1deg-global')
+>>> new_grid = GeoGrid('2deg-global')
+>>> # Generate random data on the original GeoGrid
+>>> A = np.random.rand(orig_grid.num_y, orig_grid.num_x)
+>>> # Interpolate data to the new GeoGrid
+>>> B = interpolate(A, orig_grid, new_grid)
+>>> # Print shapes of data before and after
+>>> print(A.shape)
+(181, 360)
+>>> print(B.shape)
+(91, 180)
+```
