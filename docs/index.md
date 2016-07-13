@@ -12,7 +12,7 @@ What do I need a GeoGrid for?
 
 GeoGrids make it easier to work with geospatial data in Python. While there are many [existing geospatial Python packages](https://github.com/SpatialPython/spatial_python/blob/master/packages.md), I wanted to make a very simple one that would allow me to work with the same grids across different applications. Here at CPC, and many other places, we use the same set of grids everywhere (1-degree global, 0.5-degree global, etc.). Why not define that grid once and be done with it?
 
-GeoGrids are utilized by several other CPC packages, including the [GeoPlot](/cpc.geoplot) package.
+GeoGrids are utilized by several other CPC packages, including the [GeoPlot](../cpc.geoplot) package.
 
 How do I create a GeoGrid?
 --------------------------
@@ -135,3 +135,22 @@ Here are examples of mean temperature observations with different smoothing fact
 [unsmoothed]: images/example-smoothing-unsmoothed.png
 [smoothed-1.0]: images/example-smoothing-1.0.png
 [smoothed-3.0]: images/example-smoothing-3.0.png
+
+### Filling in coastal values
+
+When you're working with a course dataset (eg. 1-degree global or greater), and your dataset is land-only, you may get some missing coastal areas. For example, here are 1-degree gridded precipitation observations:
+
+![](images/example-fill_outside_mask_borders-before.png)
+
+As you can see, there are some coastal areas that are not covered by a grid square. Using the `fill_outside_mask_borders()` function, we can fill in 1 or more grid point layers outside the masked area (outside the land):
+
+```python
+>>> import numpy as np
+>>> from cpc.geogrids.manipulation import fill_outside_mask_borders
+>>> data = np.fromfile('example.bin', dtype='float32').reshape(181, 360)
+>>> B = fill_outside_mask_borders(A)
+```
+
+Here are the resulting observations:
+
+![](images/example-fill_outside_mask_borders-after.png)
