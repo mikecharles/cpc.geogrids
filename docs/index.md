@@ -34,16 +34,33 @@ Built-in grids include:
 For a list of all built-in GeoGrids, call the `list_builtin_geogrids()` function:
 
 ```python
-from cpc.geogrids.definition import list_builtin_geogrids
-print(list_builtin_geogrids())
+>>> from cpc.geogrids import list_builtin_geogrids
+>>> list_builtin_geogrids()
+['2.5deg-global',
+ '1/6th-deg-global',
+ '2deg-conus',
+ '0.5-deg-global-center-aligned',
+ '0.5-deg-global-edge-aligned',
+ '2deg-global',
+ '1deg-global']
 ```
 
 You can create a GeoGrid using a built-in definition like this:
 
 ```python
-from cpc.geogrids.definition import GeoGrid
-grid = GeoGrid('1deg-global')
-print(grid)
+>>> from cpc.geogrids import GeoGrid
+>>> grid = GeoGrid('1deg-global')
+>>> grid
+GeoGrid:
+- lats: [-90.0, -89.0,....0, 88.0, 89.0, 90.0]
+- ll_corner: (-90, 0)
+- lons: [0.0, 1.0, 2.0... 357.0, 358.0, 359.0]
+- name: 1deg-global
+- num_x: 360
+- num_y: 181
+- res: 1
+- type: latlon
+- ur_corner: (90, 359)
 ```
 
 ### Creating a custom grid
@@ -58,8 +75,19 @@ You can create a custom grid by passing the following arguments when instantiati
 For example:
 
 ```python
-from cpc.geogrids.definition import GeoGrid
-grid = GeoGrid(ll_corner=(20, 30), ur_corner=(60, 90), res=2)
+>>> from cpc.geogrids import GeoGrid
+>>> grid = GeoGrid(ll_corner=(20, 30), ur_corner=(60, 90), res=2)
+>>> grid
+GeoGrid:
+- lats: [20.0, 22.0, 2....0, 56.0, 58.0, 60.0]
+- ll_corner: (20, 30)
+- lons: [30.0, 32.0, 3....0, 86.0, 88.0, 90.0]
+- name: custom
+- num_x: 31
+- num_y: 21
+- res: 2
+- type: latlon
+- ur_corner: (60, 90)
 ```
 
 How do I manipulate data on GeoGrids?
@@ -69,45 +97,41 @@ The `cpc.geogrids` packages comes with several functions to manipulate data resi
 
 ### Interpolating data
 
-The `interpolate()` function can interpolate an array of data from one GeoGrid to another.
-
-    interpolate(orig_data, orig_grid, new_grid)
-
-    Interpolates data from one GeoGrid to another.
-
-    Parameters
-    ----------
-
-    - orig_data - *array_like* - array of original data
-    - orig_grid - *GeoGrid* - original GeoGrid
-    - new_grid - *GeoGrid* - new GeoGrid
-
-    Returns
-    -------
-
-    - new_data - *array_like* - a data array on the desired GeoGrid.
-
-    Examples
-    --------
-
-    Interpolate gridded temperature obs from 2 degrees (CONUS) to 1 degree global
+The `interpolate()` function can interpolate an array of data from one GeoGrid to another. For example, to interpolate between a 1- and 2-degree global GeoGrid:
 
 ```python
-#!/usr/bin/env python
->>> # Import packages
 >>> import numpy as np
->>> from cpc.geogrids.definition import GeoGrid
+>>> from cpc.geogrids import GeoGrid
 >>> from cpc.geogrids.manipulation import interpolate
->>> # Create original and new GeoGrids
->>> orig_grid = GeoGrid('1deg-global')
+>>> old_grid = GeoGrid('1deg-global')
 >>> new_grid = GeoGrid('2deg-global')
->>> # Generate random data on the original GeoGrid
->>> A = np.random.rand(orig_grid.num_y, orig_grid.num_x)
->>> # Interpolate data to the new GeoGrid
->>> B = interpolate(A, orig_grid, new_grid)
->>> # Print shapes of data before and after
->>> print(A.shape)
+>>> old_data = np.fromfile('example.bin', 'float32').reshape(old_grid.num_y, old_grid.num_x)
+>>> new_data = interpolate(old_data, old_grid, new_grid)
+>>> old_data.shape
 (181, 360)
->>> print(B.shape)
+>>> new_data.shape
 (91, 180)
 ```
+
+### Smoothing data
+
+The `smooth()` function can spatially smooth data on a GeoGrid. For example:
+
+```python
+>>> import numpy as np
+>>> from cpc.geogrids import GeoGrid
+>>> from cpc.geogrids.manipulation import smooth
+>>> grid = GeoGrid('1deg-global')
+>>> A = np.fromfile('example.bin', 'float32').reshape(grid.num_y, grid.num_x)
+>>> B = smooth(A, grid, factor=2)
+```
+
+Here are examples of mean temperature observations with different smoothing factors:
+
+| Unsmoothed      | Smoothing Factor 1.0 | Smoothing Factor 3.0 |
+|:---------------:|:--------------------:|:--------------------:|
+| ![][unsmoothed] |  ![][smoothed-1.0]   |   ![][smoothed-3.0]  |
+
+[unsmoothed]: images/example-smoothing-unsmoothed.png
+[smoothed-1.0]: images/example-smoothing-1.0.png
+[smoothed-3.0]: images/example-smoothing-3.0.png
