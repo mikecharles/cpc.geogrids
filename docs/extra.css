@@ -14,11 +14,11 @@ h1, h2, h3, h4 {
     font-weight: 400;
     margin: 20px auto !important;
 }
-pre {
-    font-size: 0.9em !important;
+pre > code {
+    font-size: 1.1em !important;
 }
 code {
-    font-size: 1em !important;
+    font-size: 0.85em !important;
 }
 span.function {
     color: #900;
