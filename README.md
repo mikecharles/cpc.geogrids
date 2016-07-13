@@ -1,9 +1,7 @@
 Geospatial Grids (GeoGrids)
 ===========================
 
-[![Build Status](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids.svg?branch=master)](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids)
-
-[![Coverage Status](https://coveralls.io/repos/github/noaa-nws-cpc/cpc.geogrids/badge.svg?branch=master)](https://coveralls.io/github/noaa-nws-cpc/cpc.geogrids?branch=master)
+[![Build Status](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids.svg?branch=master)](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids) [![Coverage Status](https://coveralls.io/repos/github/noaa-nws-cpc/cpc.geogrids/badge.svg?branch=master)](https://coveralls.io/github/noaa-nws-cpc/cpc.geogrids?branch=master)
 
 What is a GeoGrid?
 ------------------
