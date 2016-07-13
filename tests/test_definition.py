@@ -56,7 +56,7 @@ def test_latlon_to_gridpoint():
     """Tests the latlon_to_gridpoint() function"""
     # gridpoint of latlon pair (0, 0) should be 90 for a 1deg-global GeoGrid
     grid = GeoGrid('1deg-global')
-    assert set(grid.latlon_to_gridpoint((0, 0))) == {90}
+    assert set(grid.latlon_to_1d_index((0, 0))) == {90}
     # gridpoint should be [-1] if the latlon pair isn't found on the GeoGrid
     grid = GeoGrid('2deg-conus')
-    assert set(grid.latlon_to_gridpoint((0, 0))) == {-1}
+    assert set(grid.latlon_to_1d_index((0, 0))) == {-1}
