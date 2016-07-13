@@ -2,7 +2,7 @@ site_name: 'CPC GeoGrids'
 repo_url: https://github.com/noaa-nws-cpc/cpc.geogrids
 site_description: CPC geospatial grids (grid definitions, interpolation, etc.)
 site_author: Mike Charles
-theme: readthedocs
+theme: mkdocs
 extra_css: [extra.css]
 markdown_extensions:
   - admonition
