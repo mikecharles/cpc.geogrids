@@ -21,8 +21,12 @@ install:
   - pip install -r requirements.txt
   # Install this app
   - pip install -e .
+  # Install coveralls for coveralls.io
+  - pip install coveralls
 script:
-  - py.test
+  - py.test --doctest-modules -v --cov coveralls
+after_success:
+  - coveralls
 
 # After you create the Github repo and add it to Travis, run the
 # travis_pypi_setup.py script to finish PyPI deployment setup
