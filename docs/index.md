@@ -156,4 +156,44 @@ Here are the resulting observations:
 
 ![](images/example-fill_outside_mask_borders-after.png)
 
+See the [API documentation](api/manipulation/#functions) for more information.
+
+Other things you can do with a GeoGrid
+--------------------------------------
+
+### Check that a data array fits a GeoGrid
+
+If you have defined a GeoGrid, and you want to see if a given array of data fits that particular GeoGrid, you can use the `GeoGrid.data_fits()` function. For example:
+
+```python
+>>> import numpy as np
+>>> from cpc.geogrids import GeoGrid
+>>> grid = GeoGrid('1deg-global')
+>>> data = np.random.random((grid.num_y, grid.num_x))
+>>> data.shape
+(181, 360)
+>>> grid.data_fits(data)
+True
+>>> data = np.random.random((grid.num_y + 1, grid.num_x + 1))
+>>> data.shape
+(182, 361)
+>>> grid.data_fits(data)
+False
+```
+
+See the [API documentation](api/definition/#cpcgeogridsdefinitiongeogrid-objects) for more information.
+
+### Get the index of a grid point at a given lat/lon
+
+If you have a 1-dimensional array of data corresponding to a given GeoGrid, and you want to know the index of a grid point at a given latitude and longitude, the `latlon_to_1d_index()` function will give you that index.
+
+For example, you may have a 1-dimensional data array on a `1deg-global` GeoGrid, and you want to know the index corresponding to 50 deg lat, -80 deg lon:
+
+```python
+>>> from cpc.geogrids import GeoGrid
+>>> grid = GeoGrid('1deg-global')
+>>> grid.latlon_to_1d_index((50, -80))
+[50820]
+```
+
 See the [API documentation](api/definition/#cpcgeogridsdefinitiongeogrid-objects) for more information.
