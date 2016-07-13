@@ -7,6 +7,13 @@ What is a GeoGrid?
 The purpose of this package is to create and manipulate GeoGrid objects. A GeoGrid object stores
 information about a geospatial grid, such as the resolution, lat/lon values of each grid point, etc.
 
+What do I need a GeoGrid for?
+-----------------------------
+
+GeoGrids make it easier to work with geospatial data in Python. While there are many [existing geospatial Python packages](https://github.com/SpatialPython/spatial_python/blob/master/packages.md), I wanted to make a very simple one that would allow me to work with the same grids across different applications. Here at CPC, and many other places, we use the same set of grids everywhere (1-degree global, 0.5-degree global, etc.). Why not define that grid once and be done with it?
+
+GeoGrids are utilized by several other CPC packages, including the [GeoPlot](/cpc.geoplot) package.
+
 How do I create a GeoGrid?
 --------------------------
 
