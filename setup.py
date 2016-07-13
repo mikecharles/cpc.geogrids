@@ -30,6 +30,7 @@ setup(
     namespace_packages=['cpc'],
     include_package_data=True,
     install_requires=requirements,
+    tests_require = ['pytest', 'pytest-cov'],
     license="CC",
     zip_safe=False,
     classifiers=[
