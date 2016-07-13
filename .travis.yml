@@ -24,7 +24,7 @@ install:
   # Install coveralls for coveralls.io
   - pip install coveralls
 script:
-  - py.test --doctest-modules -v --cov coveralls
+  - py.test --doctest-modules -v --cov
 after_success:
   - coveralls
 
