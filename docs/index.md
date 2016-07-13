@@ -110,6 +110,8 @@ The `interpolate()` function can interpolate an array of data from one GeoGrid t
 (91, 180)
 ```
 
+See the [API documentation](api/manipulation/#functions) for more information.
+
 ### Smoothing data
 
 The `smooth()` function can spatially smooth data on a GeoGrid. For example:
@@ -133,6 +135,8 @@ Here are examples of mean temperature observations with different smoothing fact
 [smoothed-1.0]: images/example-smoothing-1.0.png
 [smoothed-3.0]: images/example-smoothing-3.0.png
 
+See the [API documentation](api/manipulation/#functions) for more information.
+
 ### Filling in coastal values
 
 When you're working with a course dataset (eg. 1-degree global or greater), and your dataset is land-only, you may get some missing coastal areas. For example, here are 1-degree gridded precipitation observations:
@@ -151,3 +155,5 @@ As you can see, there are some coastal areas that are not covered by a grid squa
 Here are the resulting observations:
 
 ![](images/example-fill_outside_mask_borders-after.png)
+
+See the [API documentation](api/definition/#cpcgeogridsdefinitiongeogrid-objects) for more information.
