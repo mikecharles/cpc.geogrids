@@ -18,20 +18,17 @@ def interpolate(orig_data, orig_grid, new_grid):
     """
     Interpolates data from one GeoGrid to another.
 
-    Parameters
-    ----------
+    ### Parameters
 
     - orig_data - *array_like* - array of original data
     - orig_grid - *GeoGrid* - original GeoGrid
     - new_grid - *GeoGrid* - new GeoGrid
 
-    Returns
-    -------
+    ### Returns
 
     - new_data - *array_like* - a data array on the desired GeoGrid.
 
-    Examples
-    --------
+    ### Examples
 
     Interpolate gridded temperature obs from 2 degrees (CONUS) to 1 degree global
 
@@ -99,20 +96,17 @@ def fill_outside_mask_borders(data, passes=1):
     Fill the grid points outside of the mask borders of a dataset (eg. over the ocean for
     land-only datasets) with the value from the nearest non-missing neighbor
 
-    Parameters
-    ----------
+    ### Parameters
 
-        - data - *numpy array* - data to fill missing
-        - passes - *int* - number of passes (for each pass, 1 extra layer of grid points will be
-        filled)
+    - data - *numpy array* - data to fill missing
+    - passes - *int* - number of passes (for each pass, 1 extra layer of grid points will be
+    filled)
 
-    Returns
-    -------
+    ### Returns
 
-        - *numpy array* - a filled array
+    - *numpy array* - a filled array
 
-    Examples
-    --------
+    ### Examples
 
     Create a 5x5 array of data, mask out the outer values, and fill
 
@@ -164,24 +158,21 @@ def fill_outside_mask_borders(data, passes=1):
         return data.data
 
 
-def smooth(data, grid, smoothing_factor=0.5):
+def smooth(data, grid, factor=0.5):
     """
     Smooth an array of spatial data using a gaussian filter
 
-    Parameters
-    ----------
+    ### Parameters
 
     - data - *array_like* - array of spatial data
     - grid - *GeoGrid* - GeoGrid corresponding to data
-    - smoothing_factor - *float, optional* - sigma value for the gaussian filter
+    - factor - *float, optional* - sigma value for the gaussian filter
 
-    Returns
-    -------
+    ### Returns
 
     - *array_like* - array of smoothed spatial data
 
-    Examples
-    --------
+    ### Examples
 
     """
     # Make sure data matches grid
@@ -196,6 +187,6 @@ def smooth(data, grid, smoothing_factor=0.5):
     # filter does not eat away the data set at the borders.
     data = fill_outside_mask_borders(data, passes=max([grid.num_y, grid.num_x]))
     # Apply a Gaussian filter to smooth the data
-    data = gaussian_filter(data, smoothing_factor, order=0, mode='nearest')
+    data = gaussian_filter(data, factor, order=0, mode='nearest')
     # Reapply the mask from the initial data array
     return np.where(mask, np.NaN, data)
