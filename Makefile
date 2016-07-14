@@ -42,6 +42,7 @@ clean-pyc:
 	find . -name '__pycache__' -exec rm -fr {} +
 
 clean-test:
+	rm -rf .cache
 	rm -f .coverage
 	rm -fr htmlcov/
 	rm -rf cov-report/
