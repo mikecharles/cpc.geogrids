@@ -54,9 +54,7 @@ test:
 	py.test
 
 coverage:
-	coverage run --source cpc.geogrids setup.py test
-	coverage report -m
-	coverage html
+	py.test --cov --cov-report html
 	$(BROWSER) htmlcov/index.html
 
 docs:
