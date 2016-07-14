@@ -63,7 +63,7 @@ docs:
 	rm -rf docs/api
 	docs/make_docs.py cpc.geogrids
 
-github-docs:
+github-docs: docs
 	mkdocs gh-deploy --clean
 
 release: clean
