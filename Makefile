@@ -34,6 +34,7 @@ clean-build:
 	rm -rf docs/api
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+	rm -rf site/
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
