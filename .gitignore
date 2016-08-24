@@ -66,5 +66,6 @@ target/
 /site
 /docs/api
 
-# GitHub Pages
+# GitHub Pages / Jekyll stuff
 /docs/_site
+/docs/Gemfile.lock
