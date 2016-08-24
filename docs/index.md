@@ -1,3 +1,8 @@
+---
+layout: default
+title: GeoSpatial Grids (GeoGrids)
+---
+
 Geospatial Grids (GeoGrids)
 ===========================
 
@@ -196,4 +201,4 @@ For example, you may have a 1-dimensional data array on a `1deg-global` GeoGrid,
 [50820]
 ```
 
-See the [API documentation](api/definition/#cpcgeogridsdefinitiongeogrid-objects) for more information.
+See the [API documentation](#NEED-LINK-HERE) for more information.

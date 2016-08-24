@@ -65,3 +65,6 @@ target/
 # MkDocs
 /site
 /docs/api
+
+# GitHub Pages
+/docs/_site
