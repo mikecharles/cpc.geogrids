@@ -1,0 +1,17 @@
+# Setup
+title:        Geospatial Grids (GeoGrids)
+tagline:      CPC geospatial grids (grid definitions, interpolation, etc.)
+baseurl:      ""
+paginate:     1
+
+# About/contact
+author:
+  name:       Mike Charles
+  url:        http://www.github.com/mikecharles
+
+# Gems
+gems:
+  - jekyll-paginate
+
+#Others
+markdown: kramdown
