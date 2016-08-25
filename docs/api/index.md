@@ -8,7 +8,7 @@ layout: default
     {% for page in site.pages %}
         {% if page.type == 'apidoc' %}
             <li>
-                <a href="{{site.baseurl}}/{{page.url}}">{{page.title}}</a>
+                <a href="{{site.baseurl}}{{page.url}}">{{page.title}}</a>
             </li>
         {% endif %}
     {% endfor %}
