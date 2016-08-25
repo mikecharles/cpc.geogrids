@@ -64,7 +64,6 @@ target/
 
 # MkDocs
 /site
-/docs/api
 
 # GitHub Pages / Jekyll stuff
 /docs/_site
