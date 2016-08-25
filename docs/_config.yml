@@ -1,8 +1,7 @@
 # Setup
 title:        Geospatial Grids (GeoGrids)
 tagline:      CPC geospatial grids (grid definitions, interpolation, etc.)
-baseurl:      "/cpc.geogrids"
-paginate:     1
+baseurl:      /cpc.geogrids
 
 # About/contact
 author:
