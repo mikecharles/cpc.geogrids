@@ -3,6 +3,6 @@ Defines all Exceptions used by the GeoGrids package
 """
 
 
-class GeoGridError(Exception):
+class GeogridError(Exception):
     def __init__(self, *args, **kwargs):
         Exception.__init__(self, *args, **kwargs)
