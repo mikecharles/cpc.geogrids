@@ -12,7 +12,7 @@ import reprlib
 import numpy as np
 
 # This package
-from cpc.geogrids.exceptions import GeoGridError
+from cpc.geogrids.exceptions import GeogridError
 
 
 # Create reprlib
@@ -71,11 +71,11 @@ def list_builtin_geogrids():
     return list(builtin_geogrids.keys())
 
 
-class GeoGrid:
+class Geogrid:
     """
-    GeoGrid object storing attributes of a geo grid.
+    Geogrid object storing attributes of a geo grid.
 
-    A GeoGrid object can either be created by providing the name of the grid, or by providing the
+    A Geogrid object can either be created by providing the name of the grid, or by providing the
     other attributes listed below
 
     #### Attributes
@@ -104,7 +104,7 @@ class GeoGrid:
         '''Grid type (currently only latlon is supported)'''
 
         # ------------------------------------------------------------------------------------------
-        # Create the GeoGrid
+        # Create the Geogrid
         #
         # Built-in
         if name in builtin_geogrids:
@@ -115,11 +115,11 @@ class GeoGrid:
             self.type = builtin_geogrids[name]['type']
         # Custom
         else:
-            # User didn't provide everything necessary to create a custom GeoGrid
+            # User didn't provide everything necessary to create a custom Geogrid
             if not all([self.ll_corner, self.ur_corner, self.res]):
-                raise GeoGridError('You must either supply the name of a built-in Grid, or an '
+                raise GeogridError('You must either supply the name of a built-in Grid, or an '
                                    'll_corner, ur_corner, and res to create a custom Grid')
-            # Create a custom GeoGrid
+            # Create a custom Geogrid
             else:
                 self.name = 'custom'
                 self.ll_corner = ll_corner
@@ -143,11 +143,11 @@ class GeoGrid:
         details = ''
         for key, val in sorted(vars(self).items()):
             details += eval(r.repr('- {}: {}\n'.format(key, val)))
-        return 'GeoGrid:\n{}'.format(details)
+        return 'Geogrid:\n{}'.format(details)
 
     def data_fits(self, data):
         """
-        Determines if the specified data fits this GeoGrid
+        Determines if the specified data fits this Geogrid
 
         #### Parameters
 
@@ -155,17 +155,17 @@ class GeoGrid:
 
         #### Returns
 
-        - *boolean* - whether the data fits this GeoGrid
+        - *boolean* - whether the data fits this Geogrid
 
         #### Exceptions
 
-        - *GeoGridError* - raised if data is not a valid NumPy array
+        - *GeogridError* - raised if data is not a valid NumPy array
 
         #### Examples
 
             >>> import numpy as np
-            >>> from cpc.geogrids import GeoGrid
-            >>> grid = GeoGrid('1deg-global')
+            >>> from cpc.geogrids import Geogrid
+            >>> grid = Geogrid('1deg-global')
             >>> data = np.random.random((grid.num_y, grid.num_x))
             >>> data.shape
             (181, 360)
@@ -184,14 +184,14 @@ class GeoGrid:
             else:
                 return True
         except AttributeError:
-            raise GeoGridError('Data not a valid NumPy array')
+            raise GeogridError('Data not a valid NumPy array')
 
     def latlon_to_1d_index(self, latlons):
         """
-        Returns the 1-dimensional index of the grid point, from this GeoGrid, that is located at
+        Returns the 1-dimensional index of the grid point, from this Geogrid, that is located at
         the specified lat/lon position
 
-        For example, you may have a 1-dimensional data array on a `1deg-global` GeoGrid, and you
+        For example, you may have a 1-dimensional data array on a `1deg-global` Geogrid, and you
         want to know the index corresponding to 50 deg lat, -80 deg lon.
 
         #### Parameters
@@ -207,15 +207,15 @@ class GeoGrid:
 
         Get the index of a 1deg-global grid at 50 deg lat, -80 deg lon
 
-            >>> from cpc.geogrids import GeoGrid
-            >>> grid = GeoGrid('1deg-global')
+            >>> from cpc.geogrids import Geogrid
+            >>> grid = Geogrid('1deg-global')
             >>> grid.latlon_to_1d_index((50, -80))
             [50820]
 
         Get the index of 1deg-global grid at several lat/lon points
 
-            >>> from cpc.geogrids import GeoGrid
-            >>> grid = GeoGrid('1deg-global')
+            >>> from cpc.geogrids import Geogrid
+            >>> grid = Geogrid('1deg-global')
             >>> grid.latlon_to_1d_index([(0, 0), (20, 40), (50, -80)])
             [90, 7350, 50820]
         """
@@ -235,5 +235,5 @@ class GeoGrid:
         return matches
 
 # Support applications referring to the legacy name for GeoGrids (Grids)
-Grid = GeoGrid
-GridError = GeoGridError
+Grid = Geogrid
+GridError = GeogridError

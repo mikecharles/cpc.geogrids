@@ -11,22 +11,22 @@ from scipy.ndimage.filters import gaussian_filter
 import mpl_toolkits.basemap
 
 # This package
-from cpc.geogrids.exceptions import GeoGridError
+from cpc.geogrids.exceptions import GeogridError
 
 
 def interpolate(orig_data, orig_grid, new_grid):
     """
-    Interpolates data from one GeoGrid to another.
+    Interpolates data from one Geogrid to another.
 
     ### Parameters
 
     - orig_data - *array_like* - array of original data
-    - orig_grid - *GeoGrid* - original GeoGrid
-    - new_grid - *GeoGrid* - new GeoGrid
+    - orig_grid - *Geogrid* - original Geogrid
+    - new_grid - *Geogrid* - new Geogrid
 
     ### Returns
 
-    - new_data - *array_like* - a data array on the desired GeoGrid.
+    - new_data - *array_like* - a data array on the desired Geogrid.
 
     ### Examples
 
@@ -35,14 +35,14 @@ def interpolate(orig_data, orig_grid, new_grid):
         #!/usr/bin/env python
         >>> # Import packages
         >>> import numpy as np
-        >>> from cpc.geogrids.definition import GeoGrid
+        >>> from cpc.geogrids.definition import Geogrid
         >>> from cpc.geogrids.manipulation import interpolate
         >>> # Create original and new GeoGrids
-        >>> orig_grid = GeoGrid('1deg-global')
-        >>> new_grid = GeoGrid('2deg-global')
-        >>> # Generate random data on the original GeoGrid
+        >>> orig_grid = Geogrid('1deg-global')
+        >>> new_grid = Geogrid('2deg-global')
+        >>> # Generate random data on the original Geogrid
         >>> A = np.random.rand(orig_grid.num_y, orig_grid.num_x)
-        >>> # Interpolate data to the new GeoGrid
+        >>> # Interpolate data to the new Geogrid
         >>> B = interpolate(A, orig_grid, new_grid)
         >>> # Print shapes of data before and after
         >>> print(A.shape)
@@ -165,7 +165,7 @@ def smooth(data, grid, factor=0.5):
     ### Parameters
 
     - data - *array_like* - array of spatial data
-    - grid - *GeoGrid* - GeoGrid corresponding to data
+    - grid - *Geogrid* - Geogrid corresponding to data
     - factor - *float, optional* - sigma value for the gaussian filter
 
     ### Returns
@@ -177,7 +177,7 @@ def smooth(data, grid, factor=0.5):
     """
     # Make sure data matches grid
     if not grid.data_fits(data):
-        raise GeoGridError('data provided does not fit the GeoGrid provided')
+        raise GeogridError('data provided does not fit the Geogrid provided')
     # ----------------------------------------------------------------------------------------------
     # Smooth the data
     #

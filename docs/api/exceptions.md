@@ -9,7 +9,7 @@ type: apidoc
 
 
 
-## cpc.geogrids.exceptions.GeoGridError Objects
+## cpc.geogrids.exceptions.GeogridError Objects
 
 
 
