@@ -12,7 +12,7 @@ type: apidoc
 
 
 ## Data
-- `builtin_geogrids = {'2deg-global': {'ur...` 
+- `builtin_geogrids = {'2deg-conus': {'ll_...` 
 
 ## Functions
 
@@ -20,7 +20,7 @@ type: apidoc
 
 
 
-## cpc.geogrids.definition.GeoGrid Objects
+## cpc.geogrids.definition.Geogrid Objects
 
 
 
@@ -34,7 +34,7 @@ type: apidoc
 
 ### <span class="function">data_fits(self, data)</span> 
 
-> Determines if the specified data fits this GeoGrid
+> Determines if the specified data fits this Geogrid
 > 
 > #### Parameters
 > 
@@ -42,17 +42,17 @@ type: apidoc
 > 
 > #### Returns
 > 
-> - *boolean* - whether the data fits this GeoGrid
+> - *boolean* - whether the data fits this Geogrid
 > 
 > #### Exceptions
 > 
-> - *GeoGridError* - raised if data is not a valid NumPy array
+> - *GeogridError* - raised if data is not a valid NumPy array
 > 
 > #### Examples
 > 
 >     >>> import numpy as np
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> data = np.random.random((grid.num_y, grid.num_x))
 >     >>> data.shape
 >     (181, 360)
@@ -68,10 +68,10 @@ type: apidoc
 
 ### <span class="function">latlon_to_1d_index(self, latlons)</span> 
 
-> Returns the 1-dimensional index of the grid point, from this GeoGrid, that is located at
+> Returns the 1-dimensional index of the grid point, from this Geogrid, that is located at
 > the specified lat/lon position
 > 
-> For example, you may have a 1-dimensional data array on a `1deg-global` GeoGrid, and you
+> For example, you may have a 1-dimensional data array on a `1deg-global` Geogrid, and you
 > want to know the index corresponding to 50 deg lat, -80 deg lon.
 > 
 > #### Parameters
@@ -87,15 +87,15 @@ type: apidoc
 > 
 > Get the index of a 1deg-global grid at 50 deg lat, -80 deg lon
 > 
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> grid.latlon_to_1d_index((50, -80))
 >     [50820]
 > 
 > Get the index of 1deg-global grid at several lat/lon points
 > 
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> grid.latlon_to_1d_index([(0, 0), (20, 40), (50, -80)])
 >     [90, 7350, 50820]
 
@@ -115,7 +115,7 @@ type: apidoc
 
 ### <span class="function">data_fits(self, data)</span> 
 
-> Determines if the specified data fits this GeoGrid
+> Determines if the specified data fits this Geogrid
 > 
 > #### Parameters
 > 
@@ -123,17 +123,17 @@ type: apidoc
 > 
 > #### Returns
 > 
-> - *boolean* - whether the data fits this GeoGrid
+> - *boolean* - whether the data fits this Geogrid
 > 
 > #### Exceptions
 > 
-> - *GeoGridError* - raised if data is not a valid NumPy array
+> - *GeogridError* - raised if data is not a valid NumPy array
 > 
 > #### Examples
 > 
 >     >>> import numpy as np
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> data = np.random.random((grid.num_y, grid.num_x))
 >     >>> data.shape
 >     (181, 360)
@@ -149,10 +149,10 @@ type: apidoc
 
 ### <span class="function">latlon_to_1d_index(self, latlons)</span> 
 
-> Returns the 1-dimensional index of the grid point, from this GeoGrid, that is located at
+> Returns the 1-dimensional index of the grid point, from this Geogrid, that is located at
 > the specified lat/lon position
 > 
-> For example, you may have a 1-dimensional data array on a `1deg-global` GeoGrid, and you
+> For example, you may have a 1-dimensional data array on a `1deg-global` Geogrid, and you
 > want to know the index corresponding to 50 deg lat, -80 deg lon.
 > 
 > #### Parameters
@@ -168,15 +168,15 @@ type: apidoc
 > 
 > Get the index of a 1deg-global grid at 50 deg lat, -80 deg lon
 > 
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> grid.latlon_to_1d_index((50, -80))
 >     [50820]
 > 
 > Get the index of 1deg-global grid at several lat/lon points
 > 
->     >>> from cpc.geogrids import GeoGrid
->     >>> grid = GeoGrid('1deg-global')
+>     >>> from cpc.geogrids import Geogrid
+>     >>> grid = Geogrid('1deg-global')
 >     >>> grid.latlon_to_1d_index([(0, 0), (20, 40), (50, -80)])
 >     [90, 7350, 50820]
 
