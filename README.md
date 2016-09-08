@@ -1,12 +1,12 @@
-Geospatial Grids (GeoGrids)
+Geospatial Grids (Geogrids)
 ===========================
 
 [![Build Status](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids.svg?branch=master)](https://travis-ci.org/noaa-nws-cpc/cpc.geogrids) [![Coverage Status](https://coveralls.io/repos/github/noaa-nws-cpc/cpc.geogrids/badge.svg?branch=master)](https://coveralls.io/github/noaa-nws-cpc/cpc.geogrids?branch=master)
 
-What is a GeoGrid?
+What is a Geogrid?
 ------------------
 
-The purpose of this package is to create and manipulate GeoGrid objects. A GeoGrid object stores
+The purpose of this package is to create and manipulate Geogrid objects. A Geogrid object stores
 information about a geospatial grid, such as the resolution, lat/lon values of each grid point, etc.
 
 Installation
