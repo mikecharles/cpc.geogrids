@@ -52,13 +52,13 @@ builtin_geogrids = {
         'res': 1/6,
         'type': 'latlon'
     },
-    '0.5-deg-global-center-aligned': {
+    '0.5-deg-global-edge-aligned': {
         'll_corner': (-89.75, 0.25),
         'ur_corner': (89.75, 359.75),
         'res': 0.5,
         'type': 'latlon'
     },
-    '0.5-deg-global-edge-aligned': {
+    '0.5-deg-global-center-aligned': {
         'll_corner': (-90, 0),
         'ur_corner': (90, 359.5),
         'res': 0.5,
