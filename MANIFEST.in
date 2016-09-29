@@ -9,3 +9,5 @@ include cpc.geogrids/config.yml
 recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+
+recursive-include cpc/geogrids/data *
