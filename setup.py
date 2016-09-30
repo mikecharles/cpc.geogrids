@@ -20,7 +20,7 @@ requirements = ['scipy']
 
 setup(
     name="cpc.geogrids",
-    version='v0.1.0',
+    version='v0.2',
     description="CPC geospatial grids (grid definitions, interpolation, etc.)",
     long_description=readme + '\n\n' + history,
     author="Mike Charles",
