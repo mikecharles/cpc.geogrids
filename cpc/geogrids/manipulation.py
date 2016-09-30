@@ -9,7 +9,7 @@ import warnings
 import numpy as np
 from scipy.ndimage.filters import gaussian_filter
 import mpl_toolkits.basemap
-from stats_utils.stats import find_nearest_index
+from cpc.stats import find_nearest_index
 
 # This package
 from cpc.geogrids.exceptions import GeogridError
