@@ -219,6 +219,9 @@ def grid_to_stn(gridded_data, grid, stn_lats, stn_lons):
     --------
 
     """
+    # Make sure stn_lats and stn_lons are same length
+    if len(stn_lats) != len(stn_lons):
+        raise GeogridError('stn_lats and stn_lons must have the same length')
     # Reshape gridded data to 2 dimensions if necessary
     if gridded_data.ndim == 1:
         gridded_data = np.reshape(gridded_data, (grid.num_y, grid.num_x))
