@@ -193,7 +193,7 @@ def smooth(data, grid, factor=0.5):
     return np.where(mask, np.NaN, data)
 
 
-def grid_to_stn(gridded_data, grid, stn_ids, stn_lats, stn_lons):
+def grid_to_stn(gridded_data, grid, stn_lats, stn_lons):
     """Interpolates values from a grid to stations in a station list.
 
     Parameters
@@ -203,8 +203,6 @@ def grid_to_stn(gridded_data, grid, stn_ids, stn_lats, stn_lons):
         - Array of gridded data
     - grid (Grid)
         - `data_utils.gridded.grid.Grid` that the gridded data is on
-    - stn_ids (list)
-        - List of station ids
     - stn_lats (list)
         - List of station lats
     - stn_lons (list)
@@ -227,7 +225,7 @@ def grid_to_stn(gridded_data, grid, stn_ids, stn_lats, stn_lons):
     # Create empty list to store station vals
     stn_val = []
     # Loop over all stations
-    for i in range(len(stn_ids)):
+    for i in range(len(stn_lats)):
         # Find closest grid point to station
         x_index = find_nearest_index(grid.lons, stn_lons[i])
         y_index = find_nearest_index(grid.lats, stn_lats[i])
