@@ -211,9 +211,9 @@ def grid_to_stn(gridded_data, grid, stn_lats, stn_lons):
     Returns
     -------
 
-    - array_like
-        - Array of values representing the value of the gridded data
-          interpolated to the station locations
+    - list
+        - List of values representing the value of the gridded data interpolated to the station
+          locations
 
     Examples
     --------
