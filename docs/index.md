@@ -163,6 +163,57 @@ Here are the resulting observations:
 
 See the [API documentation](api/manipulation/#functions) for more information.
 
+### Converting gridded data to station data
+
+The `cpc.geogrids.manipulation.grid_to_stn()` function returns a list of data values at stations. You supply the function with the gridded data, the `Geogrid` the gridded data applies to, and a list of station latitudes and longitudes. For example:
+
+```python
+>>> import numpy as np
+>>> from cpc.geogrids.manipulation import grid_to_stn
+>>> from cpc.geogrids import Geogrid
+>>> geogrid = Geogrid('1deg-global')
+>>> stn_lats = [30, 40, 50]
+>>> stn_lons = [200, 210, 220]
+>>> gridded_data = np.fromfile('/path/to/500hgt_05d_20120515.bin', 'float32')
+>>> grid_to_stn(gridded_data, geogrid, stn_lats, stn_lons)
+[5789.7549, 5612.4351, 5558.7021]
+```
+
+*Note that the function currently simply picks the closest grid point as the station value, as opposed to doing linear interpolation.*
+
+A basic station list is included as a resource in this package. You can access it like this:
+
+```python
+from pkg_resources import resource_filename
+stn_file = resource_filename('cpc.geogrids', 'data/station-list-tmean.csv')
+with open(stn_file, 'r') as file:
+    for line in file:
+        # Process each line of the CSV file
+```
+
+Here's a full example of parsing the station list into station latitudes and longitudes:
+
+```python
+>>> from pkg_resources import resource_filename
+>>> stn_file = resource_filename('cpc.geogrids', 'data/station-list-tmean.csv')
+>>> with open(stn_file, 'r') as file:
+>>>     # Skip header line
+>>>     next(file)
+>>>     # Loop over lines
+>>>     for line in file:
+>>>         # Split line into columns
+>>>         columns = line.replace('\n', '').split(',')
+>>>         # Append id, lat, and lon to lists
+>>>         stn_ids.append(columns[0])
+>>>         stn_lats.append(float(columns[6]))
+>>>         if float(columns[7]) < 0:  # convert to positive lons
+>>>             stn_lons.append(float(columns[7]) + 360)
+>>>         else:
+>>>             stn_lons.append(float(columns[7]))
+```
+
+See the [API documentation](api/manipulation.html) for more information.
+
 Other things you can do with a Geogrid
 --------------------------------------
 
