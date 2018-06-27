@@ -237,3 +237,7 @@ class Geogrid:
 # Support applications referring to the legacy name for GeoGrids (Grids)
 Grid = Geogrid
 GridError = GeogridError
+
+if __name__ == '__main__':
+    from cpc.geogrids import Geogrid
+    print(Geogrid('0.5deg-global-center-aligned'))
